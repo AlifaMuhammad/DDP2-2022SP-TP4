@@ -1,35 +1,72 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
     // TODO: Tambahkan modifier untuk atribut
-    String name;
-    int yearsOfExperience;
-    int salaryMultiplier;
+    protected String name;
+    protected int yearsOfExperience;
+    protected double salaryMultiplier;
     Division division;
     List<Project> projects;
 
     // TODO: Lengkapi constructor
     public Employee(String name, int yearsOfExperience, double salaryMultiplier) {
+        this.name = name;
+        this.yearsOfExperience = yearsOfExperience;
+        this.salaryMultiplier = salaryMultiplier;
+        this.projects = new ArrayList<>();
     }
 
     public int calculateSalary() {
         // TODO Lengkapi logika untuk menghitung gaji
-        return 0;
+        if (this.division != null) {
+           double hasil = division.getbaseSalary() * (1 + salaryMultiplier + yearsOfExperience/10);
+            int value = (int)hasil;
+            return value; 
+        }
+        else {
+            return division.getbaseSalary();
+        }    
+            
     }
 
-    public String getDivisionName() {
+    public void addProject(Project project){
+        if (projects.size() >= 2) {
+            System.out.println("Karyawan " + name + " hanya dapat mengikuti dua proyek.");
+            return;
+        }
+        projects.add(project);
+    }
+
+    public Division getDivisionName() {
         //TODO: Lengkapi logika untuk mendapat string nama divisi
-        return "";
+        return division;
     }
 
     public String getProjectsString() {
         //TODO: Lengkapi logika untuk mendapat string daftar proyek
-        return "";
+        StringBuilder projectsStr = new StringBuilder();
+            for (Project project : projects) {
+                projectsStr.append(project.getName()).append(", ");
+            }
+            if (projectsStr.length() > 2) {
+                projectsStr.setLength(projectsStr.length() - 2);
+            }
+            return projectsStr.toString();
     }
 
     public String getName() {
         return name;
     }
+
+    public void setDivision(Division division){
+        this.division = division;
+    }
+
+    @Override
+        public String toString() {
+            return name + " - " + calculateSalary() + " - " + getProjectsString();
+        }
 
     // Tambahkan getter & setter lainnya sesuai kebutuhan
 }

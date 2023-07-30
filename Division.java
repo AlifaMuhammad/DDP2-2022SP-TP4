@@ -1,19 +1,32 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Division {
     // TODO: Tambahkan modifier untuk atribut
-    int baseSalary;
+    private int baseSalary;
     List<Employee> employeeList;
 
     // TODO: Lengkapi constructor
     public Division(int baseSalary) {
-        
+        this.baseSalary = baseSalary;
+        this.employeeList = new ArrayList<>();
     }
 
     // TODO: Lengkapi logika untuk menambahkan karyawan
     public void addEmployee(Employee employee) {
+        employeeList.add(employee);
+    }
+    // Tambahkan getter & setter lainnya sesuai kebutuhan
 
+    public int getbaseSalary(){
+        return baseSalary;
     }
 
-    // Tambahkan getter & setter lainnya sesuai kebutuhan
+    public void setbaseSalary(int baseSalary){
+        this.baseSalary = baseSalary;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
 }

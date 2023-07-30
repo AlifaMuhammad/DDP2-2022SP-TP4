@@ -175,27 +175,98 @@ public class SimProyek {
     // Silahkan tambahkan method lain yang dirasa dapat membantu
 
     private void printProjectListNumberOnly() {
+        int i = 1;
+        for (Project project : projectList) {
+            System.out.println(i + ". " + project.getName());
+            i++;
+        }
     }
 
     private void printDivisionDetail(int nomorPilihan) {
-    }
+        Division division = divisionList.get(nomorPilihan - 1);
+        System.out.println("Divisi " + division.getClass().getSimpleName());
+        System.out.println("Gaji Pokok: " + division.getbaseSalary());
+        System.out.println("Daftar Karyawan:");
+        if (division.getEmployeeList() == null || division.getEmployeeList().isEmpty()) {
+            System.out.println("- Tidak ada karyawan dalam divisi ini");
+        } else {
+            for (Employee employee : division.getEmployeeList()) {
+                System.out.println("- " + employee.getName());
+            }
+        }
+}
+    
 
     private void addEmployee(String namaKaryawan, String jabatan, int lamaBekerja, double bonusGaji, int nomorDivisi) {
+        Division division = divisionList.get(nomorDivisi - 1);
+        Employee employee;
+        if (jabatan.equalsIgnoreCase("manager")) {
+            employee = new Manager(namaKaryawan, lamaBekerja, bonusGaji);
+        } else if (jabatan.equalsIgnoreCase("intern")) {
+            employee = new Intern(namaKaryawan, lamaBekerja, bonusGaji);
+        } else {
+            employee = new Employee(namaKaryawan, lamaBekerja, bonusGaji);
+        }
+        
+        // Set the division for the employee
+        employee.setDivision(division);
+
+        employeeList.add(employee);
+        division.addEmployee(employee);
     }
 
     private void printProjectList() {
+        int i = 1;
+        for (Project project : projectList) {
+            System.out.println(i + ". " + project.getName());
+            if (project.getProjectLeader() != null) {
+                System.out.println("   Leader: " + project.getProjectLeader().getName());
+            } else {
+                System.out.println("   Leader: Tidak memiliki leader");
+            }
+            System.out.println("   Jumlah anggota: " + project.getMemberList().size());
+            i++;
+        }
     }
 
     private void projectDetail(int nomorPilihan) {
+        Project project = projectList.get(nomorPilihan - 1);
+        System.out.println("Proyek " + project.getName() + " Detail:");
+        System.out.println("Leader: " + project.getProjectLeader().getName());
+        System.out.println("Anggota:");
+        int i = 1;
+        for (Employee member : project.getMemberList()) {
+            System.out.println(i + ". " + member.getName() + " - Divisi " + member.getDivisionName());
+            i++;
+        }
     }
 
     private void deleteProjectMember(int nomorPilihan, int nomorAnggota) {
+        Project project = projectList.get(nomorPilihan - 1);
+        Employee member = project.getMemberList().get(nomorAnggota - 1);
+        project.removeMember(member);
     }
 
     private void addProjectMember(int nomorPilihan, String namaKaryawan) {
+        Project project = projectList.get(nomorPilihan - 1);
+        Employee employee = null;
+        for (Employee emp : employeeList) {
+            if (emp.getName().equalsIgnoreCase(namaKaryawan)) {
+                employee = emp;
+                break;
+            }
+        }
+        if (employee != null) {
+            project.addMember(employee);
+            System.out.println("Karyawan " + employee.getName() + " berhasil ditambahkan ke dalam " + project.getName());
+        }
+        
     }
 
     private void createProject(String projectName) {
+        Project project = new Project(projectName);
+        projectList.add(project);
+        System.out.println("Proyek " + projectName + " berhasil ditambahkan ke dalam sistem.");
     }
 
     private void printMenu() {
@@ -271,6 +342,10 @@ public class SimProyek {
         Project ufoProject = new Project("Proyek UFO");
         Project saladProject = new Project("Proyek Franchise Salad Buah Tanpa Semangka dan Melon");
         Project compfestProject = new Project("Website COMPFEST");
+
+        ufoProject.setProjectLeader(budi);
+        saladProject.setProjectLeader(ica);
+        compfestProject.setProjectLeader(andi);
 
         ufoProject.addMember(budi);
         ufoProject.addMember(udin);
