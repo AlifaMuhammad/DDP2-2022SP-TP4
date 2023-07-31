@@ -24,6 +24,6 @@ public class Design extends Division {
                 managerCount++;
             }
         }
-        return "Divisi Design memiliki " + employeeList.size() + " karyawan dengan " + managerCount + " manager.";
+        return "Divisi Design";
     }
 }

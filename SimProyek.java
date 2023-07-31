@@ -185,28 +185,34 @@ public class SimProyek {
     }
 
     /**
-     * 
+     * method untuk menampilkan detail proyek
      * @param nomorPilihan
      */
     private void printDivisionDetail(int nomorPilihan) {
         Division division = divisionList.get(nomorPilihan - 1);
         System.out.println("Divisi " + division + " memiliki " + division.getEmployeeList().size() + " karyawan dengan " + division.getManagerList().size() + " manager.");
         int i = 1;
+
+        for (Manager manager : division.getManagerList()) {
+            String projectStatus = (manager.getProject() != null) ? manager.getProject().getName() : "Tidak memiliki proyek";
+            System.out.println(i + ". " + manager.getName() + " - " + manager.getSalary() + " - " + projectStatus);
+            i++;
+        }
         for (Employee employee : division.getEmployeeList()) {
-            System.out.println(i + ". " + employee.getName() + " - " + employee.calculateSalary() + " - Tidak memiliki proyek");
+            System.out.println(i + ". " + employee.getName() + " - " +  employee.calculateSalary() + " - Tidak memiliki proyek");
             i++;
         }
         }
 
     
-        /**
-         * method untuk menentukan employee masuk ke divisi mana
-         * @param namaKaryawan
-         * @param jabatan
-         * @param lamaBekerja
-         * @param bonusGaji
-         * @param nomorDivisi
-         */
+    /**
+     * method untuk menentukan employee masuk ke divisi mana
+     * @param namaKaryawan
+     * @param jabatan
+     * @param lamaBekerja
+     * @param bonusGaji
+     * @param nomorDivisi
+     */
     private void addEmployee(String namaKaryawan, String jabatan, int lamaBekerja, double bonusGaji, int nomorDivisi) {
         Division division = divisionList.get(nomorDivisi - 1);
         Employee employee;
@@ -217,8 +223,7 @@ public class SimProyek {
         } else {
             employee = new Employee(namaKaryawan, lamaBekerja, bonusGaji);
         }
-        
-        // Set the division for the employee
+
         employee.setDivision(division);
 
         employeeList.add(employee);
@@ -261,7 +266,7 @@ public class SimProyek {
         System.out.println("Anggota:");
         int i = 1;
         for (Employee member : project.getMemberList()) {
-            System.out.println(i + ". " + member.getName() + " - Divisi " + member.getDivisionName());
+            System.out.println(i + ". " + member.getName() + " - " + member.getDivisionname());
             i++;
         }
     }

@@ -23,6 +23,6 @@ public class HRD extends Division {
                 managerCount++;
             }
         }
-        return "Divisi HRD memiliki " + employeeList.size() + " karyawan dengan " + managerCount + " manager.";
+        return "Divisi HRD";
     }
 }

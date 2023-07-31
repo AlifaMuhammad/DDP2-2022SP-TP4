@@ -24,6 +24,6 @@ public class Marketing extends Division {
                 managerCount++;
             }
         }
-        return "Divisi Marketing memiliki " + employeeList.size() + " karyawan dengan " + managerCount + " manager.";
+        return "Divisi Marketing ";
     }
 }

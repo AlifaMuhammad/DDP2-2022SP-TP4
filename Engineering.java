@@ -25,6 +25,6 @@ public class Engineering extends Division{
                 managerCount++;
             }
         }
-        return "Divisi Engineering memiliki " + employeeList.size() + " karyawan dengan " + managerCount + " manager.";
+        return "Divisi Engineering";
     }
 }

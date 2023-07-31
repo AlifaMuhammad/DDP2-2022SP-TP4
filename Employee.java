@@ -3,10 +3,11 @@ import java.util.List;
 
 public class Employee {
     // TODO: Tambahkan modifier untuk atribut
+    private String divisionname;
     protected String name;
     protected int yearsOfExperience;
     protected double salaryMultiplier;
-    Division division;
+    public Division division;
     List<Project> projects;
 
     // TODO: Lengkapi constructor
@@ -43,9 +44,13 @@ public class Employee {
         projects.add(project);
     }
 
-    public Division getDivisionName() {
-        //TODO: Lengkapi logika untuk mendapat string nama divisi
-        return division;
+
+    public int getSalary() {
+        if (division != null) {
+            return division.getbaseSalary();
+        } else {
+            return 0;
+        }
     }
 
 
@@ -70,6 +75,18 @@ public class Employee {
 
     public void setDivision(Division division){
         this.division = division;
+    }
+
+    public Division getDivisionname(){
+        return division;
+    }
+
+    public String getDivisionName() {
+        return divisionname;
+    }
+
+    public void setDivisionName(String divisionName) {
+        this.divisionname = divisionName;
     }
 
     @Override
