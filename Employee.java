@@ -17,10 +17,13 @@ public class Employee {
         this.projects = new ArrayList<>();
     }
 
+    /**
+     * method untuk menghitung gaji
+     * @return
+     */
     public int calculateSalary() {
-        // TODO Lengkapi logika untuk menghitung gaji
         if (this.division != null) {
-           double hasil = division.getbaseSalary() * (1 + salaryMultiplier + yearsOfExperience/10);
+            double hasil = division.getbaseSalary() * (1 + salaryMultiplier + yearsOfExperience/10);
             int value = (int)hasil;
             return value; 
         }
@@ -29,11 +32,13 @@ public class Employee {
         }    
             
     }
-
+    /**
+     * method untuk menambah proyek
+     * @param project
+     */
     public void addProject(Project project){
         if (projects.size() >= 2) {
             System.out.println("Karyawan " + name + " hanya dapat mengikuti dua proyek.");
-            return;
         }
         projects.add(project);
     }
@@ -43,8 +48,12 @@ public class Employee {
         return division;
     }
 
+
+    /**
+     * method untuk mendapatkan string daftar proyek dan me-return string 
+     * @return
+     */
     public String getProjectsString() {
-        //TODO: Lengkapi logika untuk mendapat string daftar proyek
         StringBuilder projectsStr = new StringBuilder();
             for (Project project : projects) {
                 projectsStr.append(project.getName()).append(", ");

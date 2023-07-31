@@ -5,6 +5,7 @@ public class Division {
     // TODO: Tambahkan modifier untuk atribut
     private int baseSalary;
     List<Employee> employeeList;
+    
 
     // TODO: Lengkapi constructor
     public Division(int baseSalary) {
@@ -12,7 +13,10 @@ public class Division {
         this.employeeList = new ArrayList<>();
     }
 
-    // TODO: Lengkapi logika untuk menambahkan karyawan
+    /**
+     * method untuk menambah employee
+     * @param employee
+     */
     public void addEmployee(Employee employee) {
         employeeList.add(employee);
     }

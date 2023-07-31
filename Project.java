@@ -13,13 +13,19 @@ public class Project {
         this.memberList = new ArrayList<>();
     }
 
-    // TODO: Lengkapi logika menambahkan anggota proyek
+    /**
+     * method untuk menambah employee
+     * @param employee
+     */
     public void addMember(Employee employee) {
         memberList.add(employee);
     }
 
 
-    // TODO: Lengkapi logika menghapus anggota proyek
+    /**
+     * method untuk menghapus employee
+     * @param employee
+     */
     public void removeMember(Employee employee) {
         memberList.remove(employee);
     }
