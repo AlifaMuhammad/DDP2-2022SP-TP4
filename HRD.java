@@ -17,12 +17,7 @@ public class HRD extends Division {
 
     @Override
     public String toString() {
-        int managerCount = 0;
-        for (Employee employee : employeeList) {
-            if (employee instanceof Manager) {
-                managerCount++;
-            }
-        }
+
         return "Divisi HRD";
     }
 }

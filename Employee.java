@@ -58,7 +58,7 @@ public class Employee {
      * method untuk mendapatkan string daftar proyek dan me-return string 
      * @return
      */
-    public String getProjectsString() {
+    public StringBuilder getProjectsString() {
         StringBuilder projectsStr = new StringBuilder();
             for (Project project : projects) {
                 projectsStr.append(project.getName()).append(", ");
@@ -66,7 +66,8 @@ public class Employee {
             if (projectsStr.length() > 2) {
                 projectsStr.setLength(projectsStr.length() - 2);
             }
-            return projectsStr.toString();
+        return projectsStr;
+
     }
 
     public String getName() {
@@ -89,10 +90,6 @@ public class Employee {
         this.divisionname = divisionName;
     }
 
-    @Override
-        public String toString() {
-            return name + " - " + calculateSalary() + " - " + getProjectsString();
-        }
 
     // Tambahkan getter & setter lainnya sesuai kebutuhan
 }

@@ -193,13 +193,8 @@ public class SimProyek {
         System.out.println("Divisi " + division + " memiliki " + division.getEmployeeList().size() + " karyawan dengan " + division.getManagerList().size() + " manager.");
         int i = 1;
 
-        for (Manager manager : division.getManagerList()) {
-            String projectStatus = (manager.getProject() != null) ? manager.getProject().getName() : "Tidak memiliki proyek";
-            System.out.println(i + ". " + manager.getName() + " - " + manager.getSalary() + " - " + projectStatus);
-            i++;
-        }
         for (Employee employee : division.getEmployeeList()) {
-            System.out.println(i + ". " + employee.getName() + " - " +  employee.calculateSalary() + " - Tidak memiliki proyek");
+            System.out.println(i + ". " + employee.getName() + " - " +  employee.calculateSalary() + " - " + employee.getProjectsString());
             i++;
         }
         }
